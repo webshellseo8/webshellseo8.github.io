@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Index Page -->
+  <url>
+    <loc>https://webshell.lol/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://webshell.lol/index.html"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://webshell.lol/index.id.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://webshell.lol/index.zh.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://webshell.lol/index.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://webshell.lol/index.es.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://webshell.lol/index.pt-BR.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://webshell.lol/index.html"/>
+  </url>
+  
+  <!-- Services Page -->
+  <url>
+    <loc>https://webshell.lol/services.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://webshell.lol/services.html"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://webshell.lol/services.id.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://webshell.lol/services.zh.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://webshell.lol/services.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://webshell.lol/services.es.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://webshell.lol/services.pt-BR.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://webshell.lol/services.html"/>
+  </url>
+  
+  <!-- Pricing Page -->
+  <url>
+    <loc>https://webshell.lol/pricing.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://webshell.lol/pricing.html"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://webshell.lol/pricing.id.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://webshell.lol/pricing.zh.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://webshell.lol/pricing.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://webshell.lol/pricing.es.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://webshell.lol/pricing.pt-BR.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://webshell.lol/pricing.html"/>
+  </url>
+  
+  <!-- About Page -->
+  <url>
+    <loc>https://webshell.lol/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://webshell.lol/about.html"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://webshell.lol/about.id.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://webshell.lol/about.zh.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://webshell.lol/about.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://webshell.lol/about.es.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://webshell.lol/about.pt-BR.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://webshell.lol/about.html"/>
+  </url>
+  
+  <!-- Blog Page -->
+  <url>
+    <loc>https://webshell.lol/blog.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://webshell.lol/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://webshell.lol/blog.id.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://webshell.lol/blog.zh.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://webshell.lol/blog.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://webshell.lol/blog.es.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://webshell.lol/blog.pt-BR.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://webshell.lol/blog.html"/>
+  </url>
+  
+  <!-- Contact Page -->
+  <url>
+    <loc>https://webshell.lol/contact.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://webshell.lol/contact.html"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://webshell.lol/contact.id.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://webshell.lol/contact.zh.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://webshell.lol/contact.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://webshell.lol/contact.es.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://webshell.lol/contact.pt-BR.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://webshell.lol/contact.html"/>
+  </url>
+  
+  <!-- Sample Post -->
+  <url>
+    <loc>https://webshell.lol/posts/sample-post.en.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://webshell.lol/posts/sample-post.en.html"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://webshell.lol/posts/sample-post.id.html"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://webshell.lol/posts/sample-post.zh.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://webshell.lol/posts/sample-post.tr.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://webshell.lol/posts/sample-post.es.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://webshell.lol/posts/sample-post.pt-BR.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://webshell.lol/posts/sample-post.en.html"/>
+  </url>
+</urlset>

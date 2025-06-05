@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Page not found. The page you're looking for may have been moved, deleted, or perhaps never existed in the first place.">
+  
+  <title>Page Not Found | WebShell.lol</title>
+  
+  <link rel="stylesheet" href="/styles.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="/styles.css"></noscript>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%235B44FF' d='M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 4c1.86 0 3.41 1.28 3.86 3H8.14c.45-1.72 2-3 3.86-3zm-4 5h8v2h-8V10zm0 3h8v2h-8v-2z'/%3E%3C/svg%3E">
+  
+  <!-- Auto-redirect after 10 seconds -->
+  <meta http-equiv="refresh" content="10;url=/">
+</head>
+<body>
+  <div class="not-found-container">
+    <div class="not-found-content">
+      <h1 class="not-found-title" data-i18n="404-title">Page Not Found</h1>
+      <h2 class="not-found-subtitle" data-i18n="404-subtitle">Looks like you've ventured into uncharted territory</h2>
+      <p class="not-found-description" data-i18n="404-description">The page you're looking for may have been moved, deleted, or perhaps never existed in the first place. Even our WebShell technology couldn't index this one!</p>
+      
+      <a href="/" class="btn btn-primary" data-i18n="404-button">Return to Homepage</a>
+      
+      <div class="not-found-search">
+        <label for="search" class="sr-only" data-i18n="404-search-label">Or try searching for what you need:</label>
+        <input type="text" id="search" placeholder="Search our site" data-i18n="404-search-placeholder">
+        <button type="submit" data-i18n="404-search-button">Search</button>
+      </div>
+      
+      <p class="not-found-help-text" data-i18n="404-help-text">If you believe this is an error, please contact our support team.</p>
+      
+      <div class="redirect-container">
+        <p>
+          <span data-i18n="404-redirect-text">Redirecting you to the homepage in</span>
+          <span id="redirect-seconds">10</span>
+          <span data-i18n="404-redirect-seconds">seconds</span>
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <script type="module" src="/main.js" defer></script>
+  <script type="module" src="/lang.js" defer></script>
+</body>
+</html>
