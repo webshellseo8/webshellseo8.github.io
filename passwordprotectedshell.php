@@ -1,109 +1,79 @@
 <?php
-/**
- * Simple password gate that fetches the valid password
- * from a remote URL (plaintext). Push this file instead of
- * the original Aurora.php and update PASSWORD_URL if needed.
- */
+/******************************************************************
+ * Hourly-password gate for Aurora (fixed version)
+ * ---------------------------------------------------------------
+ *   • Fetches the current password from https://hackersplanet.pro/password.php
+ *   • Shows a minimal login form if the visitor isn’t authenticated
+ *   • Caches the fetched password in $_SESSION for 5 min
+ *   • Provides ?logout=1 query flag
+ ******************************************************************/
 session_start();
 
-// ---- Remote password source ----
-const PASSWORD_URL = 'https://hackersplanet.pro/password.php';
-// ---------------------------------
+/* --------- config --------- */
+const PASSWORD_URL  = 'https://hackersplanet.pro/password.php';
+const CACHE_SECONDS = 300;          // refetch remote pw every 5 min
+/* --------------------------- */
 
-/**
- * Fetch password from remote source.
- * Falls back to cURL if allow_url_fopen is disabled.
- * Returns trimmed password string or null on failure.
- */
-function fetch_remote_password($url) {
-    // Try file_get_contents first
-    if (ini_get('allow_url_fopen')) {
-        $pwd = @file_get_contents($url);
-        if ($pwd !== false && strlen($pwd)) {
-            return trim($pwd);
-        }
-    }
-    // Fall back to cURL
-    if (function_exists('curl_init')) {
-        $ch = curl_init($url);
-        curl_setopt_array($ch, [
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_SSL_VERIFYPEER => true,
-            CURLOPT_TIMEOUT => 5
-        ]);
-        $pwd = curl_exec($ch);
-        curl_close($ch);
-        if ($pwd !== false && strlen($pwd)) {
-            return trim($pwd);
-        }
-    }
-    return null;
+/* pull / refresh cached password */
+$refresh = !isset($_SESSION['pw_time']) ||
+           time() - $_SESSION['pw_time'] > CACHE_SECONDS;
+if ($refresh) {
+    $_SESSION['remote_pw'] = @file_get_contents(PASSWORD_URL);
+    $_SESSION['pw_time']   = time();
+}
+$remote_pw = trim((string)($_SESSION['remote_pw'] ?? ''));
+
+/* logout helper ( ?logout=1 ) */
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header('Location: '.$_SERVER['PHP_SELF']);
+    exit;
 }
 
-// Cache the password in session for this visit
-if (!isset($_SESSION['remote_pass'])) {
-    $_SESSION['remote_pass'] = fetch_remote_password(PASSWORD_URL);
-}
-$remote_pass = $_SESSION['remote_pass'];
-$login_error = '';
-
-if ($remote_pass === null) {
-    // We couldn't retrieve the password; show error.
-    $login_error = 'Unable to retrieve authentication key. Please try again later.';
-}
-
-// Handle form post
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['password']) && $remote_pass !== null) {
-    if (hash_equals($remote_pass, $_POST['password'])) {
+$error = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (hash_equals($remote_pw, $_POST['password'] ?? '')) {
         $_SESSION['loggedin'] = true;
-        header('Location: ' . strtok($_SERVER['REQUEST_URI'], '?'));
-        exit();
-    } else {
-        $login_error = 'Incorrect password';
+        header('Location: '.$_SERVER['PHP_SELF']);
+        exit;
     }
+    $error = 'Incorrect password';
 }
 
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Enter Password</title>
+/* gate */
+if (empty($_SESSION['loggedin'])): ?>
+<!doctype html>
+<html lang="en"><meta charset="utf-8">
+<title>Secure Area – Enter Password</title>
 <style>
-    body{font-family:Arial,Helvetica,sans-serif;background:#eef2f7;display:flex;justify-content:center;align-items:center;height:100vh;margin:0}
-    .card{background:#fff;padding:2rem 3rem;border-radius:12px;box-shadow:0 6px 16px rgba(0,0,0,0.08);width:320px}
-    h2{margin-top:0;text-align:center;color:#333}
-    input{width:100%;padding:.75rem;border:1px solid #ccc;border-radius:6px;margin-bottom:1rem;font-size:1rem}
-    button{width:100%;padding:.75rem;border:none;border-radius:6px;background:#007bff;color:#fff;font-size:1rem;cursor:pointer}
-    button:hover{background:#0069d9}
-    .error{color:#d32f2f;text-align:center;margin-bottom:1rem;font-size:.9rem}
+    body{font-family:sans-serif;background:#f4f6fa;display:flex;height:100vh;
+         align-items:center;justify-content:center;margin:0}
+    .wrap{background:#fff;padding:2rem 3rem;border-radius:12px;
+          box-shadow:0 6px 16px rgba(0,0,0,.1);width:320px}
+    h1{margin:0 0 1rem;text-align:center;font-size:1.5rem}
+    input{width:100%;padding:.7rem;border:1px solid #ccc;border-radius:6px;
+          margin-bottom:1rem;font-size:1rem}
+    button{width:100%;padding:.7rem;border:none;border-radius:6px;
+           background:#0060df;color:#fff;font-size:1rem;cursor:pointer}
+    button:hover{background:#004cb5}
+    .err{color:#d33;text-align:center;margin-bottom:.9rem;font-size:.9rem}
 </style>
-</head>
 <body>
-<div class="card">
-    <h2>Password</h2>
-    <?php if($login_error): ?><div class="error"><?php echo htmlspecialchars($login_error); ?></div><?php endif; ?>
-    <?php if($remote_pass === null): ?>
-        <!-- If we cannot fetch password, hide form -->
-        <p style="text-align:center">Service temporarily unavailable.</p>
+<form class="wrap" method="post" autocomplete="off">
+    <h1>Protected</h1>
+    <?php if($error): ?><div class="err"><?=htmlspecialchars($error)?></div><?php endif ?>
+    <?php if($remote_pw===''): ?>
+        <p style="text-align:center">Password service unavailable.<br>Try later.</p>
     <?php else: ?>
-    <form method="post" action="">
         <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">Enter</button>
-    </form>
-    <?php endif; ?>
-</div>
-</body>
-</html>
+        <button>Enter</button>
+    <?php endif ?>
+</form>
+</body></html>
+<?php exit; endif; ?>
+<!-- -------------- END OF GATE -------------- -->
+
 <?php
-    exit();
-}
-
-// ---------- ORIGINAL AURORA CODE BELOW ----------
-?>
-
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 date_default_timezone_set('UTC');
@@ -1968,5 +1938,3 @@ document.getElementById("slideUpBtn").onclick = function() {
 
 </body>
 </html>
-
-?>
